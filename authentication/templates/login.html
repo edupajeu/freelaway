@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static %} <!-- Load static files -->
 
 {% block 'head' %}
 <link rel="stylesheet" href="{% static 'authentication/css/signup.css' %}">
@@ -7,7 +7,7 @@
 
 {% block 'body' %}
     <div class="box">
-        <form action="{% url 'login' %}" method="post">{% csrf_token %}
+        <form action="{% url 'login' %}" method="post">{% csrf_token %} <!--- csrf_token Solve authentication issues --->
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert {{message.tags}}">  <!-- Messages treatment -->
@@ -15,13 +15,14 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            <h1 class="title font-degrade borda-bottom-degrade">LOGAR</h2>
+            <h2 class="title font-degrade borda-bottom-degrade">LOGAR</h2>
             <br>
             <span class="span-description">User name:</span>
             <input type="text" class="form-control input-signup" name="username">
             <br>
             <span class="span-description">Password:</span>
             <input type="password" class="form-control input-signup" name="password">
+            <a href="{% url 'password_reset' %}"> Forgotten password?</a>
             <br>
             <input type="submit" value="LOGIN" class="btn btn-success btn-lg">
             <a href="{% url 'signup' %}" class="btn btn-primary btn-lg">SIGNUP</a>

@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('authentication.urls'))  # POINT UP TO FOLDER AUTHENTICATION
+    path('auth/', include('authentication.urls')),  # POINT UP TO APP AUTHENTICATION
+    path('jobs/', include('jobs.urls'))  # POINT UP TO APP JOBS
 ]
+# USED TO STATICS MEDIAS
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

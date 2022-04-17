@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse  # WE USE TO HAVE THE FUNCTION HTTPRESPONSE
+from django.http import HttpResponse  # WE USE TO HAVE THE FUNCTION HTTPRESPONSE IN TESTS
 from django.contrib.auth.models import User  # CONTRIB TO USER CONFIRMATION
 from django.contrib import messages
 from django.contrib.messages import constants
@@ -17,7 +17,7 @@ def signup(request):
         confirm_pass = request.POST.get('confirm-password')
 
         if not password == confirm_pass:
-            messages.add_message(request, constants.ERROR, 'The passwords doesn’t match!')
+            messages.add_message(request, constants.ERROR, 'The passwords don’t match!')
             return redirect('/auth/signup')
 
         if len(username.strip()) == 0 or len(password.strip()) == 0:  # USERNAME OR PASSWORD EQUAL ZERO
