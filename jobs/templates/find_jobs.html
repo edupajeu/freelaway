@@ -12,8 +12,8 @@
     <br>
         <div class="row">
             <div class="col-sm">
-                <!-- USED "GET" METHOD HERE BECAUSE WE HAVE AN INNER FORM
-            <form action="{% url 'find_jobs' %}" method="GET"> {% csrf_token %} <!--- csrf_token Solve authentication issues --->
+                <!-- Used "GET" method here because we have an inner form as a filter -->
+            <form action="{% url 'find_jobs' %}" method="GET"> {% csrf_token %} <!-- csrf_token Solve authentication issues -->
                 <input type="text" class="form-control" placeholder="Minimum Price" name="minimum_price">
                 <br>
                 <input type="text" class="form-control" placeholder="Maximum Price" name="maximum_price">
@@ -40,7 +40,11 @@
         <br>
         <h2 class="title">OPEN JOBS:</h2>
         <div class="row justify-content-around">
+
+        <!-- List of jobs -->
+
         {% for job in jobs %}
+
              <div class="col-6 row-card">
                 <div class="card-job">
                          <div class="header-job">
@@ -73,13 +77,91 @@
 
                         </div>
 
-                        <button class="btn btn-success">Details</button>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#modal-{{ job.id }}">Details</button>
                         <br>
                         <br>
 
                     </div>
                 </div>
             </div>
+
+            <!-- Modal details from job -->
+
+            <div class="modal fade" id="modal-{{job.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div style="background-color: #333;" class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title job-modal-title" id="exampleModalLabel">JOB:</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <h4 class="title-job">{{job.title}}</h4>
+
+                                <h6 class="title-body">Description:</h6>
+
+                                <p>{{job.description}}</p>
+
+                                <div class="row">
+
+                                    <div class="col-4">
+
+                                        <h6 class="title-body">Price:</h6>
+
+                                        <p>{{job.price}}</p>
+
+                                    </div>
+
+                                    <div class="col-4">
+
+                                        <h6 class="title-body">Term:</h6>
+
+                                        <p>{{job.delivery_time}}</p>
+
+                                    </div>
+
+                                    <div class="col-4">
+
+                                        <h6 class="title-body">Category:</h6>
+
+                                        <p>{{job.delivery_time}}</p>
+
+                                    </div>
+
+
+
+                                </div>
+
+                                <h4 style="display:inline;" class="job-modal-title">References:</h4>
+                                <br>
+                                <br>
+                                <div class="row">
+
+                                    {% for reference in job.references.all %}
+                                    <div class="col-4">
+                                        <img src="{{reference}}" width="100%">
+
+
+                                    </div>
+                                    {% endfor %}
+
+
+
+                                </div>
+                                <br>
+                                <br>
+                                <a href="{% url 'accept_job' job.id %}" class="btn btn-success btn-lg">ACCEPT JOB</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
         {% endfor %}
 
         </div>

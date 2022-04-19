@@ -25,7 +25,8 @@ class Jobs(models.Model):  # CREATE A JOBS TABLE WITH YOURS OWN ALL COLUMNS
     references = models.ManyToManyField(References)
     professional = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
     private = models.BooleanField(default=False)
-    status = models.CharField(max_length=2, default='WA')
+    status = models.CharField(max_length=2, choices=status_choices, default='C')
+    final_file = models.FileField(null=True, upload_to='', blank=True)
 
     def __str__(self) -> str:
         return self.title

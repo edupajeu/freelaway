@@ -7,7 +7,7 @@
 
 {% block 'body' %}
     <div class="box">
-        <form action="{% url 'login' %}" method="post">{% csrf_token %} <!--- csrf_token Solve authentication issues --->
+        <form action="{% url 'login' %}" method="POST">{% csrf_token %} <!--- csrf_token Solve authentication issues --->
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert {{message.tags}}">  <!-- Messages treatment -->
@@ -15,7 +15,7 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            <h2 class="title font-degrade borda-bottom-degrade">LOGAR</h2>
+            <h2 class="title font-degrade borda-bottom-degrade">LOGIN</h2>
             <br>
             <span class="span-description">User name:</span>
             <input type="text" class="form-control input-signup" name="username">

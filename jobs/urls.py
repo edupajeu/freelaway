@@ -5,4 +5,7 @@ from django.contrib.auth import views as auth_views  # VIEWS THAT COME FROM CONT
 
 urlpatterns = [
     path('find_jobs/', views.find_jobs, name='find_jobs'),
+    path('accept_job/<int:id>/', views.accept_job, name='accept_job'),
+    path('profile/', views.profile, name='profile'),
+    path('send_project/', views.send_project, name='send_project')
     ]

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block 'head' %}
+		<link rel="stylesheet" href="{% static 'jobs/css/find_jobs.css' %}">
+        <link rel="stylesheet" href="{% static 'jobs/css/profile.css' %}">
+{% endblock %}
+
+
+{% block 'body' %}
+    <br>
+    <br>
+    <div class="container">
+        {% if messages %} <!-- Messages treatment -->
+            {% for message in messages %}
+                <div class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div style="width: 60%">
+            <form action="{% url 'profile' %}" method="POST">{% csrf_token %} <!--- csrf_token Solve authentication issues --->
+                <p>Username:</p>
+                <input type="text" class="form-control" value="{{user.username}}" name="username">
+                <br>
+                <p>Email:</p>
+                <input type="email" class="form-control" value="{{user.email}}" name="email">
+                <br>
+                <p>First Name:</p>
+                <input type="text" class="form-control" value="{{user.first_name}}" name="first_name">
+                <br>
+                <p>Last Name:</p>
+                <input type="text" class="form-control" value="{{user.last_name}}" name="last_name">
+                <br>
+                <input type="submit" class="btn btn-success btn-lg" value="Save updates">
+            </form>
+        </div>
+        <br>    
+        <hr class="border-gradient">
+        <br>
+        <h4 class="title">History</h4>
+
+        <table style="background-color: #222; color: white;" class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <!-- History List of jobs -->
+
+            {% for job in jobs %}
+                 <tr>
+                    <th scope="row"><img width="100px" src="{{job.references.all.0}}"></th> <!-- Taking all references and selects only the first position -->
+                    <td>{{job.title}}</td>
+                    <td>{% if job.category == 'D'%}
+                            Design
+                        {% else %}
+                            Video Editing
+                        {% endif%}
+                    </td>
+                     <td>{{job.description}}</td>
+                     <td>
+                        {% if job.status == 'WA'%}
+                           <span class="badge badge-info">Waiting Approval</span>
+                        {% elif job.status == 'C' %}
+                            <button class="badge badge-primary" data-toggle="modal" data-target="#modal-job-{{job.id}}">Creating</button>
+                        {% else %}
+                            <span class="badge badge-success">Finished</span>
+                        {% endif %}
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+    <!-- Modal item from list of jobs -->
+
+            {% for job in jobs %}
+                {% if job.status == "C"%}
+                    <div class="modal fade" id="modal-job-{{job.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div style="background-color: #333;" class="modal-content">
+                                <div class="modal-header">
+                                    <h5 style="font-size: 30px" class="modal-title title" id="exampleModalLabel">JOB:</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <h4 class="title-job">{{job.title}}</h4>
+                                    <br>
+                                    <h6 class="title-body">Status:</h6>
+
+                                    {% if job.status == 'WA'%}
+                                       <span class="badge badge-info">Waiting Approval</span>
+                                    {% elif job.status == 'C' %}
+                                        <a class="badge badge-primary">Creating</a>
+
+                                    {% else %}
+                                        <span class="badge badge-success">Finished</span>
+                                    {% endif %}
+
+                                    <h6 class="title-body">Maximum term to delivery:</h6>
+                                    <p>{{job.delivery_time}}</p>
+
+                                    <hr style="border-color: yellow">
+                                    <form action="{% url 'send_project' %}"method="POST" enctype="multipart/form-data"> {% csrf_token %} <!--- csrf_token Solve authentication issues --->
+
+                                        <input type="file" class="form-control" placeholder="Send files" name="file">
+                                        <input type="hidden" value="{{ job.id }}" name="id">
+                                        <br>
+                                        <input type="submit" value="Send" class="btn btn-success btn-lg">
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+    </div>
+
+{% endblock %}
