@@ -8,8 +8,8 @@ from django.contrib import auth
 
 def signup(request):
     if request.method == "GET":
-        if request.user.is_authenticated:  # VERIFY IS THE USER IS ALREADY AUTHENTICATED
-            return redirect('/platform')
+        if request.user.is_authenticated:  # VERIFY IF THE USER IS ALREADY AUTHENTICATED
+            return redirect('/jobs/find_jobs')
         return render(request, 'signup.html')
     elif request.method == "POST":
         username = request.POST.get('username')
@@ -45,7 +45,7 @@ def signup(request):
 def login(request):
     if request.method == 'GET':
         if request.user.is_authenticated:  # VERIFY IS THE USER IS ALREADY AUTHENTICATED
-            return redirect('/platform')
+            return redirect('/jobs/find_jobs')
         return render(request, 'login.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
@@ -58,7 +58,7 @@ def login(request):
             return redirect('/auth/login')
         else:
             auth.login(request, user)
-            return redirect('/platform')
+            return redirect('/jobs/find_jobs')
 
 
 def logout(request):

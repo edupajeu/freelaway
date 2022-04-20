@@ -38,7 +38,7 @@ def find_jobs(request):
             elif cat == 'VE':
                 cat = ['VE']
 
-            # __gte IT MEANS GREATER THAN AND __lte IT MEANS GREATER THAN
+            # __gte IT MEANS GREATER THAN AND __lte IT MEANS LESS THAN
             jobs = Jobs.objects \
                 .filter(price__gte=min_price) \
                 .filter(price__lte=max_price) \

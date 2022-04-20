@@ -27,7 +27,7 @@
 <body class="background">
 {% if user.is_authenticated %} <!-- If the user was authenticated the navbar going to show up  -->
     <nav style="background-color: #444;" class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="{% url 'logout' %}"><span class="font-degrade-nav">FreelaWay</span></a>
+        <a class="navbar-brand" href="{% url 'find_jobs' %}"><span class="font-degrade-nav">FreelaWay</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,6 +37,16 @@
                      <a class="nav-link" href="{% url 'find_jobs' %}">Find jobs</a>
                  </li>
              </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                     <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                 </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                 </li>
+            </ul>
         </div>
     </nav>
 {% endif %}

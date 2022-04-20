@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views  # THE DOT MEANS THE SAME FOLDER TO IMPORT
 from django.contrib.auth import views as auth_views  # VIEWS THAT COME FROM CONTRIB.AUTH AND ALIENED AS AUTH_VIEWS
+
+
 urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
