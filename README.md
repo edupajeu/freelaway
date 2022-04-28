@@ -27,7 +27,7 @@ The application consists of a simple solution between employees and employer. Wh
 # Como executar o projeto
 
 ## Back end
-Prerequisites : Python 3.7 Django 4.0.3
+Prerequisites : Python 3.7 | Django 4.0.3 | Heroku 7.60.1
 
 ```bash
 # clone repository 
@@ -36,8 +36,9 @@ git clone https://github.com/edupajeu/freelaway
 # enter in the folder project back end
 cd freelaway_PWS
 
-# executar o projeto
-python3 manage.py runserver
+# run the project
+heroku local 
+
 ```
 
 ## Front end web
