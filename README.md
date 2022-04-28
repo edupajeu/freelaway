@@ -5,74 +5,48 @@
 
 https://freelaway-edupajeu.herokuapp.com/
 
-Big Game Survey é uma aplicação full stack web e mobile construída durante a 1ª edição da **Semana DevSuperior** (#sds1), evento organizado pela [DevSuperior](https://devsuperior.com "Site da DevSuperior").
+Freelaway is full stack web application and mobile built during  **PyStack Week  3.0 ** (#pystack), event organised by [Pythonando](https://pythonando.com.br/ "Pythonando Website").
 
-A aplicação consiste em uma pesquisa de preferência de games, onde os dados são coletados no app mobile, e depois são listados no app web, que também apresenta um dashboard com gráficos baseados nestes dados.
+The application consists of a simple solution between employees and employer. Where the application simplifies the way freelance jobs will be presented and requested by freelancers.
 
-## Layout mobile
-![Mobile 1](https://github.com/acenelio/assets/raw/main/sds1/mobile1.png) ![Mobile 2](https://github.com/acenelio/assets/raw/main/sds1/mobile2.png)
-
-## Layout web
-![Web 1](https://github.com/acenelio/assets/raw/main/sds1/web1.png)
-
-![Web 2](https://github.com/acenelio/assets/raw/main/sds1/web2.png)
-
-## Modelo conceitual
-![Modelo Conceitual](https://github.com/acenelio/assets/raw/main/sds1/modelo-conceitual.png)
-
-# Tecnologias utilizadas
+# Technologies used
 ## Back end
-- Java
-- Spring Boot
-- JPA / Hibernate
-- Maven
+- Python
+- Django
+
+
 ## Front end
-- HTML / CSS / JS / TypeScript
-- ReactJS
-- React Native
-- Apex Charts
-- Expo
+- HTML / CSS / JS / 
+- Boostrap
+
+
 ## Implantação em produção
-- Back end: Heroku
-- Front end web: Netlify
-- Banco de dados: Postgresql
+- Back-end: Heroku
+- Database: Postgresql
 
 # Como executar o projeto
 
 ## Back end
-Pré-requisitos: Java 11
+Prerequisites : Python 3.7 Django 4.0.3
 
 ```bash
-# clonar repositório
-git clone https://github.com/devsuperior/sds1-wmazoni
+# clone repository 
+git clone https://github.com/edupajeu/freelaway
 
-# entrar na pasta do projeto back end
-cd backend
+# enter in the folder project back end
+cd freelaway_PWS
 
 # executar o projeto
-./mvnw spring-boot:run
+python3 manage.py runserver
 ```
 
 ## Front end web
-Pré-requisitos: npm / yarn
+Prerequisites: N/a
 
-```bash
-# clonar repositório
-git clone https://github.com/devsuperior/sds1-wmazoni
 
-# entrar na pasta do projeto front end web
-cd front-web
+# Author
 
-# instalar dependências
-yarn install
-
-# executar o projeto
-yarn start
-```
-
-# Autor
-
-Wellington Mazoni de Andrade
+Eduardo Pajeú 
 
 https://www.linkedin.com/in/eduardo-pajeú
 
